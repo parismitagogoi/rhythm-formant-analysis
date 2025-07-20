@@ -8,3 +8,7 @@ This repository contains the code used in two related research works on rhythm a
 
 2. Gogoi, Parismita, Priyankoo Sarmah, and S. R. M. Prasanna. **"Analyzing long-term rhythm variations in Mising and Assamese using frequency domain correlates,”** International Journal of Asian Language Processing, 2025. [Online]. Available: https://doi.org/10.1142/S2717554525500018
 
+## Credits
+
+Parts of the code for modulation envelope extraction and rhythm formant computation are adapted from  
+➡️ [Dafydd Gibbon’s repository](https://github.com/dafyddg)
