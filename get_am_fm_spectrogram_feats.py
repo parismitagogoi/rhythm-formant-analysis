@@ -53,7 +53,7 @@ def get_am_fm_variance_feats(am_spec_mag, am_spec_fre, fm_spec_mag, fm_spec_fre)
         var_fm: variance of FM spectrogram
     """
     # AM spectrogram processing for variance of RFs
-    filtered_am_spec = am_spec[~np.all(am_spec == 0, axis=1)]
+    filtered_am_spec = am_spec_mag[~np.all(am_spec_mag == 0, axis=1)]
 
     magg = filtered_am_spec[:,1:]
     free = am_spec_fre[:,1:]
@@ -88,7 +88,7 @@ def get_am_fm_variance_feats(am_spec_mag, am_spec_fre, fm_spec_mag, fm_spec_fre)
     var_am = np.var(RF_fre1, axis = 0)
 
     # FM spectrogram processing for variance of RFs
-    filtered_fm_spec = fm_spec[~np.all(fm_spec == 0, axis=1)]
+    filtered_fm_spec = fm_spec_mag[~np.all(fm_spec_mag == 0, axis=1)]
 
     magg = filtered_fm_spec[:,1:]
     free = fm_spec_fre[:,1:]
