@@ -45,7 +45,7 @@ def get_am_fm_2ddct_feats(am_spec, fm_spec, dct_num):
 
     return dct2d_am, dct2d_fm
 
-def get_am_fm_variance_feats(am_spec, fm_spec):
+def get_am_fm_variance_feats(am_spec_mag, am_spec_fre, fm_spec_mag, fm_spec_fre):
     """
     Compute variance of AM and FM spectrograms.
     Returns:
@@ -56,7 +56,7 @@ def get_am_fm_variance_feats(am_spec, fm_spec):
     filtered_am_spec = am_spec[~np.all(am_spec == 0, axis=1)]
 
     magg = filtered_am_spec[:,1:]
-    free = filtered_am_spec[:,1:]
+    free = am_spec_fre[:,1:]
     free = free[0,:]
     RF_fre = []
         
@@ -91,7 +91,7 @@ def get_am_fm_variance_feats(am_spec, fm_spec):
     filtered_fm_spec = fm_spec[~np.all(fm_spec == 0, axis=1)]
 
     magg = filtered_fm_spec[:,1:]
-    free = filtered_fm_spec[:,1:]
+    free = fm_spec_fre[:,1:]
     free = free[0,:]
     RF_fre = []
         
@@ -121,14 +121,14 @@ def get_am_fm_variance_feats(am_spec, fm_spec):
     return var_am, var_fm
 
 def extract_features_spectrogram(wav_path: Path, specwindowsecs, specstrides, dct_num):
-    fm_spec = get_FM_spectrogram(wav_path, specwindowsecs, specstrides)
-    am_spec = get_AM_spectrogram(wav_path, specwindowsecs, specstrides)
+    fm_spec_mag, fm_spec_fre = get_FM_spectrogram(wav_path, specwindowsecs, specstrides)
+    am_spec_mag, am_spec_fre = get_AM_spectrogram(wav_path, specwindowsecs, specstrides)
 
     # Feats: variance of RFs - dims = 6 + 6 (AM+FM)
-    var_am, var_fm = get_am_fm_variance_feats(am_spec, fm_spec)
+    var_am, var_fm = get_am_fm_variance_feats(am_spec_mag, am_spec_fre, fm_spec_mag, fm_spec_fre)
     
     # Feats: 2ddct of rhythm spectrogram - dims = 4 + 4 (AM+FM)
-    dct2d_am, dct2d_fm = get_am_fm_2ddct_feats(am_spec, fm_spec, dct_num)
+    dct2d_am, dct2d_fm = get_am_fm_2ddct_feats(am_spec_mag, fm_spec_mag, dct_num)
 
     # appeding all features 
     row = pd.Series(
@@ -158,4 +158,3 @@ def extract_features_spectrogram(wav_path: Path, specwindowsecs, specstrides, dc
     # Return the row as a Series            
 
     return row
-
