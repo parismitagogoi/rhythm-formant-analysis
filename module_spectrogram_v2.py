@@ -138,7 +138,7 @@ def get_AM_spectrogram(file_path, specwindowsecs, specstrides):
                                                                       specwindowsecs,
                                                                       specstrides)
         
-    return ammagarray
+    return ammagarray, amfreqarray
 
 
 def get_FM_spectrogram(file_path, specwindowsecs, specstrides):
@@ -166,4 +166,4 @@ def get_FM_spectrogram(file_path, specwindowsecs, specstrides):
                                                                       spectrumpower,
                                                                       specwindowsecs,
                                                                       specstrides)
-    return fmmagarray
+    return fmmagarray, amfreqarray
