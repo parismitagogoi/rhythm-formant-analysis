@@ -137,9 +137,9 @@ def extract_features_spectrogram(wav_path: Path, specwindowsecs, specstrides, dc
             axis=0
         ),
         index=[
-            f"dct_am_{i+1}" for i in range(4)
+            f"dct2d_am_{i+1}" for i in range(4)
         ] + [
-            f"dct_fm_{i+1}" for i in range(4)
+            f"dct2d_fm_{i+1}" for i in range(4)
         ] + [
             f"var_am_{i+1}" for i in range(6)
         ] + [
