@@ -166,4 +166,4 @@ def get_FM_spectrogram(file_path, specwindowsecs, specstrides):
                                                                       spectrumpower,
                                                                       specwindowsecs,
                                                                       specstrides)
-    return fmmagarray, amfreqarray
+    return fmmagarray, fmfreqarray
